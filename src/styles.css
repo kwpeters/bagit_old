@@ -1,1 +1,98 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+/*******************************************************************************
+ * Flexbox
+ ******************************************************************************/
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-item-dynamic {
+    flex: 1 1 auto;
+}
+
+.flex-item-static {
+    flex: 0 0 auto;
+}
+
+/*******************************************************************************
+ * Scrolling
+ ******************************************************************************/
+.scroll-y {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.scroll-x {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.ra-scroll-xy {
+    overflow: auto;
+}
+
+/*******************************************************************************
+ * Filling Parent Element
+ ******************************************************************************/
+.fill-parent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.fill-viewport {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.fill-parent-not-positioned {
+    width: 100%;
+    height: 100%;
+}
+
+/*******************************************************************************
+ * Spacers
+ ******************************************************************************/
+.spacer-sm {
+    min-height: 5px;
+    min-width: 5px;
+}
+
+.spacer-md {
+    min-height: 10px;
+    min-width: 10px;
+}
+
+.spacer-lg {
+    min-height: 20px;
+    min-width: 20px;
+}
+
+/*******************************************************************************
+ * Content Containers
+ ******************************************************************************/
+.content {
+    padding: 20px;
+}
+
+body {
+    background-color: rgba(250, 250, 250, 0.90);
+}
+
+button.btn {
+    min-height: 50px;
+    min-width: 140px;
+}
