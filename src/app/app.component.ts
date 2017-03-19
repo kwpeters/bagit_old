@@ -10,6 +10,7 @@ import Auth = firebase.auth.Auth;
 export class AppComponent {
 
     private _firebaseAuth: firebase.auth.Auth;
+    private _curFirebaseUser: firebase.User;
 
     public userEmail: string;
     public userPassword: string;
@@ -28,6 +29,43 @@ export class AppComponent {
 
         this._firebaseAuth = firebase.auth();
 
+        this._firebaseAuth.onAuthStateChanged(this.onUserChange.bind(this));
+
+    }
+
+    private onUserChange(firebaseUser: firebase.User) {
+
+        // http://stackoverflow.com/questions/37673616/firebase-android-onauthstatechanged-called-twice
+
+        if (this._curFirebaseUser === undefined) {
+            // Got initial listener registration invocation.
+            console.log("Got initial listener registration callback.");
+            this._curFirebaseUser = firebaseUser;
+            return;
+        }
+
+        if (firebaseUser === null) {
+            console.log("The user has logged off.");
+            this._curFirebaseUser = null;
+            return;
+        }
+
+        if (this._curFirebaseUser === null) {
+            console.log(`User ${firebaseUser.uid} has logged in.`);
+            this._curFirebaseUser = firebaseUser;
+            return;
+        }
+
+        if (firebaseUser.uid === this._curFirebaseUser.uid) {
+            console.log("The current user's token has been refreshed.");
+            this._curFirebaseUser = firebaseUser;  // Don't need to update, but get the latest user info.
+            return;
+        } else {
+            console.log(`User ${firebaseUser.uid} has logged in.`);
+            this._curFirebaseUser = firebaseUser;
+            return;
+        }
+
     }
 
     public onSignUp() {
@@ -37,14 +75,18 @@ export class AppComponent {
 
         const googleAuthProvider: firebase.auth.GoogleAuthProvider  =  new firebase.auth.GoogleAuthProvider();
         this._firebaseAuth.signInWithPopup(googleAuthProvider)
-        .then((result) => {
-            console.log("\n\n----- result -----");
-            console.log(JSON.stringify(result, undefined, 4) + "\n\n");
-        })
+        // .then((result) => {
+        //     console.log("\n\n----- result -----");
+        //     console.log(JSON.stringify(result, undefined, 4) + "\n\n");
+        // })
         .catch((err) => {
             console.log("\n\n----- err -----");
             console.log(JSON.stringify(err, undefined, 4) + "\n\n");
         });
+
     }
 
+    public onLogout() {
+        this._firebaseAuth.signOut();
+    }
 }
