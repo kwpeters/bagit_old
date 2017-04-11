@@ -10,28 +10,21 @@
 
     <div class="flex-item-dynamic"></div>
 
-    <div class="flex-row">
-        <div class="flex-item-static">
-            <button type="button" class="btn btn-default" (click)="onSignUp()">
-                Sign Up
-            </button>
-        </div>
-        <div class="flex-item-dynamic"></div>
-        <div class="flex-item-static">
-            <button type="button" class="btn btn-primary" (click)="onLogin()">
-                Login
-            </button>
-        </div>
-
-    </div>
-
-    <div class="flex-item-static">
-        <button type="button" class="btn btn-default" (click)="onLogout()">
-            Logout
-        </button>
-    </div>
+    <button type="button" class="btn btn-primary" (click)="onLogin()">
+        Login
+    </button>
 
     <div class="flex-item-dynamic"></div>
+
+    <button type="button" class="btn btn-default" (click)="onLogout()">
+        Logout
+    </button>
+
+    <div class="flex-item-dynamic"></div>
+
+    <hr>
+
+    <router-outlet></router-outlet>
 
 </div>
 
