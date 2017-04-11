@@ -11,10 +11,7 @@ import {LoginService} from './login/login.service';
 })
 export class AppComponent {
 
-    private _loginService: LoginService;
-
-    constructor(loginService: LoginService) {
-        this._loginService = loginService;
+    constructor(private _loginService: LoginService) {
     }
 
     public onLogin() {

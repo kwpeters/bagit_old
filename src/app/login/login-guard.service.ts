@@ -5,10 +5,7 @@ import {LoginService} from './login.service';
 @Injectable()
 export class LoginGuardService implements CanActivate {
 
-    private _loginService: LoginService;
-
-    constructor(loginService: LoginService) {
-        this._loginService = loginService;
+    constructor(private _loginService: LoginService) {
     }
 
     canActivate(/*route: ActivatedRouteSnapshot*/): Promise<boolean> {
