@@ -8,7 +8,10 @@ export class LoginGuardService implements CanActivate {
     constructor(private _loginService: LoginService) {
     }
 
-    canActivate(/*route: ActivatedRouteSnapshot*/): Promise<boolean> {
+    canActivate(
+        // nextRoute: ActivatedRouteSnapshot,
+        // state: RouterStateSnapshot
+    ): Promise<boolean> /* | Observalbe<boolean> | boolean */ {
 
         return this._loginService.getUser()
         .then((firebaseUser) => {
