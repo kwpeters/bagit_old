@@ -96,3 +96,8 @@ button.btn {
     min-height: 50px;
     min-width: 140px;
 }
+
+
+router-outlet + * {
+    flex: 1 1 auto;
+}
